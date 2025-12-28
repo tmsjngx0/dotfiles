@@ -1,0 +1,11 @@
+# GitHub
+Host github.com
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_github
+
+# Azure DevOps
+Host ssh.dev.azure.com
+    HostName ssh.dev.azure.com
+    User git
+    IdentityFile ~/.ssh/id_azure

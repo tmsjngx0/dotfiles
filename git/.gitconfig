@@ -1,0 +1,31 @@
+[user]
+    name = Thomas Jeung
+    email = thomasjeung@outlook.com
+
+[init]
+    defaultBranch = main
+
+[core]
+    editor = nvim
+    autocrlf = input
+
+[pull]
+    rebase = true
+
+[push]
+    autoSetupRemote = true
+
+[alias]
+    st = status
+    co = checkout
+    br = branch
+    ci = commit
+    lg = log --oneline --graph --decorate
+    last = log -1 HEAD
+    unstage = reset HEAD --
+
+[diff]
+    colorMoved = default
+
+[merge]
+    conflictstyle = diff3
