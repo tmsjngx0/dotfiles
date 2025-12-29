@@ -78,3 +78,41 @@ brew bundle         # Brewfile → 설치
 - Linux: `packages/linux-required.txt` + apt
 - Windows: `packages/windows-required.txt` + winget
 - `scan-packages.sh`: 현재 상태 → *.md 업데이트 (문서용)
+
+## Cleanup Reminder Script (TODO)
+
+테스트용으로 설치한 앱들 (helix, micro, yazi 등) 정리 리마인더.
+
+### 기능
+```bash
+./scripts/cleanup-check.sh
+
+CLEANUP REMINDER
+================
+
+Installed but NOT in required list:
+  brew: helix, micro, yazi, llama.cpp, czkawka
+  cask: mactex, temurin@8
+
+Options:
+  [L] List only (done)
+  [R] Remove all
+  [I] Interactive (ask each)
+```
+
+### 구현 아이디어
+```bash
+# 현재 설치된 것
+INSTALLED=$(brew leaves)
+
+# Required 리스트 (packages/macos-required.txt 또는 Brewfile)
+REQUIRED=$(cat packages/macos-required.txt)
+
+# 차이 = 정리 대상
+comm -23 <(echo "$INSTALLED" | sort) <(echo "$REQUIRED" | sort)
+```
+
+### 주의
+- 자동 삭제 X → 리마인더만
+- 의존성 있는 것 주의 (cmake → llama.cpp)
+- `--dry-run` 기본
