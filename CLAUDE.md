@@ -48,3 +48,14 @@ link_file "$DOTFILES_DIR/<app>/config" "$HOME/.config/<app>/config"
 - 플랫폼 호환성 고려: macOS/Linux 분기 처리
 - 주석으로 설정 의도 설명
 - 테스트용 설치는 packages/*.md의 Required에 추가하지 않음
+
+## Commands
+
+- `/prime-context` - Load context (start session)
+- `/update-context` - Save context (end session)
+- `/focus` - Show/set current focus
+- `/commit` - Smart commit
+
+## Git Commits
+
+Do NOT include AI attribution in commits.
