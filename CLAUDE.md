@@ -59,3 +59,27 @@ link_file "$DOTFILES_DIR/<app>/config" "$HOME/.config/<app>/config"
 ## Git Commits
 
 Do NOT include AI attribution in commits.
+
+## Claude Code Setup
+
+Install Claude Code first:
+```bash
+npm install -g @anthropic-ai/claude-code
+```
+
+Plugins:
+```bash
+/plugin install mindcontext-core@tmsjngx0
+/plugin install claude-mem@thedotmack
+/plugin install feature-dev@claude-plugins-official
+```
+
+NPM packages:
+```bash
+npm install -g @fission-ai/openspec  # Spec-driven development
+```
+
+Bun (fast JS runtime):
+```bash
+curl -fsSL https://bun.sh/install | bash
+```

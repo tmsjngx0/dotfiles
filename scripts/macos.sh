@@ -172,11 +172,32 @@ if status "Azure CLI" "az"; then :; else
     fi
 fi
 
-# 11. Claude Code
+# 11. Bun
+section "Bun"
+if status "Bun" "bun"; then :; else
+    if ask "Install Bun?"; then
+        curl -fsSL https://bun.sh/install | bash
+        echo -e "${GREEN}Done${NC}"
+    fi
+fi
+
+# 12. Claude Code
 section "Claude Code"
 if status "Claude Code" "claude"; then :; else
     if ask "Install Claude Code?"; then
         npm install -g @anthropic-ai/claude-code
+        echo -e "${GREEN}Done${NC}"
+    fi
+fi
+
+# 13. openspec
+section "openspec"
+if npm list -g @fission-ai/openspec &> /dev/null; then
+    echo -e "${GREEN}[INSTALLED]${NC} openspec"
+else
+    echo -e "${RED}[MISSING]${NC} openspec"
+    if ask "Install openspec?"; then
+        npm install -g @fission-ai/openspec
         echo -e "${GREEN}Done${NC}"
     fi
 fi
@@ -189,4 +210,8 @@ echo -e "\n${YELLOW}Remember to:${NC}"
 echo "  1. Restart your terminal or run 'exec zsh'"
 echo "  2. Run 'gh auth login' if you installed GitHub CLI"
 echo "  3. Run 'az login' if you installed Azure CLI"
+echo "  4. Install Claude plugins (inside Claude):"
+echo "     /plugin install mindcontext-core@tmsjngx0"
+echo "     /plugin install claude-mem@thedotmack"
+echo "     /plugin install feature-dev@claude-plugins-official"
 echo ""
