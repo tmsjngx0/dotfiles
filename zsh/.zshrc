@@ -27,9 +27,20 @@ if [ -d "$HOME/.local/share/fnm" ]; then
     eval "$(fnm env)"
 fi
 
+# Bun
+if [ -d "$HOME/.bun" ]; then
+    export BUN_INSTALL="$HOME/.bun"
+    export PATH="$BUN_INSTALL/bin:$PATH"
+fi
+
 # uv (Python)
 if [ -f "$HOME/.local/bin/env" ]; then
     source "$HOME/.local/bin/env"
+fi
+
+# openspec completions
+if command -v openspec &> /dev/null; then
+    eval "$(openspec completion zsh)"
 fi
 
 # Homebrew (macOS)
@@ -52,6 +63,11 @@ alias ga="git add"
 alias gc="git commit"
 alias gp="git push"
 alias gl="git log --oneline"
+
+# ============================================
+# Machine-specific config (not tracked in git)
+# ============================================
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
 # ============================================
 # Starship prompt (load last)
