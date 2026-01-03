@@ -142,7 +142,7 @@ fi
 section "Starship Prompt"
 if status "Starship" "starship"; then :; else
     if ask "Install Starship?"; then
-        curl -sS https://starship.rs/install.sh | sh -s -- -y
+        curl -sS https://starship.rs/install.sh | sudo sh -s -- -y
         echo -e "${GREEN}Done${NC}"
         echo -e "${YELLOW}Add to ~/.zshrc: eval \"\$(starship init zsh)\"${NC}"
     fi
