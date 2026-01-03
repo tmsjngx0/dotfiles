@@ -1,6 +1,6 @@
 # Linux/WSL Packages
 
-> Last scanned: TODO
+> Last scanned: 2026-01-03 (WSL Ubuntu)
 
 ## Required (apt)
 
@@ -59,6 +59,7 @@ npm install -g @anthropic-ai/claude-code
 go
 rustup
 docker-ce
+delta           # Better git diff viewer
 
 # Yazi dependencies (file manager previews)
 ffmpeg
@@ -67,13 +68,29 @@ poppler-utils   # PDF preview
 imagemagick     # Image preview
 ```
 
-## Currently Installed (reference)
+## Currently Installed (2026-01-03)
 
-<details>
-<summary>apt list --installed (TODO)</summary>
+### Core CLI
+- git, git-lfs, gh, zsh, fzf, ripgrep, fd-find, jq, tree, zoxide, tmux
 
-```
-# Run: apt list --installed 2>/dev/null | grep -E "^(git|gh|fzf|ripgrep)"
-```
+### Terminal Tools (GitHub releases → /usr/local/bin)
+- neovim v0.11.5 (→ /opt/nvim-linux-x86_64)
+- zellij, lazygit, yazi, delta
 
-</details>
+### Runtimes
+- fnm 1.38.1 + Node v22.21.1
+- bun (~/.bun)
+- uv (~/.local/bin)
+- dotnet 8.0, 9.0
+
+### Cloud CLIs
+- az (Azure CLI)
+- gh (GitHub CLI)
+
+### npm Global Packages
+- @anthropic-ai/claude-code
+- @fission-ai/openspec
+- @openai/codex
+
+### Yazi Preview Dependencies
+- ffmpeg, 7z, imagemagick, poppler-utils

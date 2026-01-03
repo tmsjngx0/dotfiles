@@ -313,6 +313,24 @@ if status "Yazi" "yazi"; then :; else
     fi
 fi
 
+# 20. delta (git diff viewer)
+section "delta (git diff viewer)"
+if status "delta" "delta"; then :; else
+    if ask "Install delta?"; then
+        DELTA_VERSION=$(curl -s "https://api.github.com/repos/dandavison/delta/releases/latest" | jq -r '.tag_name')
+        curl -Lo /tmp/delta.tar.gz "https://github.com/dandavison/delta/releases/download/${DELTA_VERSION}/delta-${DELTA_VERSION}-x86_64-unknown-linux-gnu.tar.gz"
+        tar xf /tmp/delta.tar.gz -C /tmp
+        sudo install /tmp/delta-${DELTA_VERSION}-x86_64-unknown-linux-gnu/delta /usr/local/bin
+        rm -rf /tmp/delta.tar.gz /tmp/delta-${DELTA_VERSION}-x86_64-unknown-linux-gnu
+        echo -e "${GREEN}Done${NC}"
+        echo -e "${YELLOW}Add to ~/.gitconfig:${NC}"
+        echo -e "${YELLOW}  [core]${NC}"
+        echo -e "${YELLOW}    pager = delta${NC}"
+        echo -e "${YELLOW}  [interactive]${NC}"
+        echo -e "${YELLOW}    diffFilter = delta --color-only${NC}"
+    fi
+fi
+
 # Done
 echo -e "\n${GREEN}╔═══════════════════════════════════════╗${NC}"
 echo -e "${GREEN}║            Setup Complete!            ║${NC}"
