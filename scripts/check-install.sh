@@ -149,6 +149,17 @@ for f in starship.toml nvim yazi; do
     fi
 done
 
+# Claude Code dotfiles
+for f in statusline-command.sh; do
+    if [[ -L "$HOME/.claude/$f" ]]; then
+        echo -e "${GREEN}[LINKED]${NC} ~/.claude/$f"
+    elif [[ -e "$HOME/.claude/$f" ]]; then
+        echo -e "${YELLOW}[EXISTS]${NC} ~/.claude/$f (not a symlink)"
+    else
+        echo -e "${RED}[MISSING]${NC} ~/.claude/$f"
+    fi
+done
+
 echo -e "\n${BLUE}════════════════════════════════════════${NC}"
 echo -e "Installed: ${GREEN}$INSTALLED${NC}  Missing: ${RED}$MISSING${NC}"
 echo -e "${BLUE}════════════════════════════════════════${NC}"
