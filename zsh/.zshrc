@@ -1,25 +1,31 @@
-# Path to oh-my-zsh installation
+# ============================================
+# Oh My Zsh
+# ============================================
 export ZSH="$HOME/.oh-my-zsh"
-
-# Theme (ignored when using starship)
-ZSH_THEME=""
-
-# Plugins
+ZSH_THEME=""  # Using starship instead
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
-# Load oh-my-zsh
-source $ZSH/oh-my-zsh.sh
+if [ -d "$ZSH" ]; then
+    source $ZSH/oh-my-zsh.sh
+fi
 
 # ============================================
 # PATH
 # ============================================
 
-# Neovim
-export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+# Neovim (bob version manager)
+if [ -d "$HOME/.local/share/bob/nvim-bin" ]; then
+    export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
+# Fallback: Linux manual install
+elif [ -d "/opt/nvim-linux-x86_64/bin" ]; then
+    export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+fi
 
 # .NET
-export DOTNET_ROOT=$HOME/.dotnet
-export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
+if [ -d "$HOME/.dotnet" ]; then
+    export DOTNET_ROOT=$HOME/.dotnet
+    export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
+fi
 
 # fnm (Node.js)
 if [ -d "$HOME/.local/share/fnm" ]; then
@@ -31,12 +37,22 @@ fi
 if [ -d "$HOME/.bun" ]; then
     export BUN_INSTALL="$HOME/.bun"
     export PATH="$BUN_INSTALL/bin:$PATH"
-    [ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"  # completions
+    [ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
 fi
 
 # uv (Python)
 if [ -f "$HOME/.local/bin/env" ]; then
     source "$HOME/.local/bin/env"
+fi
+
+# Go
+if [ -d "$HOME/go/bin" ]; then
+    export PATH="$HOME/go/bin:$PATH"
+fi
+
+# Rust/Cargo
+if [ -d "$HOME/.cargo/bin" ]; then
+    export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
 # Homebrew (macOS)
@@ -48,11 +64,18 @@ fi
 # Aliases
 # ============================================
 
-alias vim="nvim"
-alias v="nvim"
+# Editor (only if nvim installed)
+if command -v nvim &> /dev/null; then
+    alias vim="nvim"
+    alias v="nvim"
+fi
+
+# Tools
 alias lg="lazygit"
 alias zj="zellij"
 alias ll="ls -la"
+
+# Git shortcuts
 alias gs="git status"
 alias gd="git diff"
 alias ga="git add"
@@ -61,11 +84,13 @@ alias gp="git push"
 alias gl="git log --oneline"
 
 # ============================================
-# Machine-specific config (not tracked in git)
+# Local config (machine-specific, not in git)
 # ============================================
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
 # ============================================
-# Starship prompt (load last)
+# Prompt (load last)
 # ============================================
-eval "$(starship init zsh)"
+if command -v starship &> /dev/null; then
+    eval "$(starship init zsh)"
+fi
