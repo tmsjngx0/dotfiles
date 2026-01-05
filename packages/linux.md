@@ -16,10 +16,11 @@ jq
 tree
 zoxide
 
-# Terminal
-zellij
-neovim
+# Terminal (neovim via bob, zellij/yazi via cargo)
 lazygit
+
+# Languages
+golang-go
 
 # Build tools
 build-essential
@@ -49,15 +50,24 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 # Claude Code
 npm install -g @anthropic-ai/claude-code
 
+# Rust + cargo-binstall
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+cargo install cargo-binstall
+
+# Neovim (via bob version manager)
+cargo binstall bob-nvim
+bob install stable && bob use stable
+
+# Zellij (via cargo binstall - faster than compile)
+cargo binstall zellij
+
 # Yazi (terminal file manager)
-# https://github.com/sxyazi/yazi/releases
+cargo binstall yazi-fm yazi-cli
 ```
 
 ## Optional
 
 ```
-go
-rustup
 docker-ce
 delta           # Better git diff viewer
 

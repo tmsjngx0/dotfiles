@@ -26,6 +26,8 @@ yazi         # File manager
 # Languages & runtimes
 fnm          # Node.js version manager
 uv           # Python
+go
+rust
 dotnet-sdk   # .NET (cask)
 
 # Yazi preview dependencies
@@ -58,10 +60,6 @@ iterm2
 ## Optional
 
 ```
-# Languages
-go
-rust
-
 # Cloud CLIs
 azure-cli
 gcloud-cli    # (cask)
