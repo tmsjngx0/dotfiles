@@ -61,6 +61,10 @@ rustup
 docker-ce
 delta           # Better git diff viewer
 
+# Cloud CLIs
+azure-cli       # https://docs.microsoft.com/cli/azure/install-azure-cli-linux
+gcloud-cli      # https://cloud.google.com/sdk/docs/install
+
 # Yazi dependencies (file manager previews)
 ffmpeg
 7zip

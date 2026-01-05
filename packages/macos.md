@@ -14,20 +14,27 @@ ripgrep
 fd
 jq
 tree
+zoxide       # Smart cd
 starship
 
 # Terminal
 zellij
 neovim
 lazygit
+yazi         # File manager
 
 # Languages & runtimes
 fnm          # Node.js version manager
 uv           # Python
 dotnet-sdk   # .NET (cask)
 
-# Cloud CLI
-azure-cli
+# Yazi preview dependencies
+ffmpeg
+poppler      # PDF preview (pdftoppm)
+imagemagick  # Image preview
+p7zip        # Archive preview
+chafa        # Image in terminal
+w3m          # HTML preview
 ```
 
 ## Required (cask)
@@ -54,6 +61,10 @@ iterm2
 # Languages
 go
 rust
+
+# Cloud CLIs
+azure-cli
+gcloud-cli    # (cask)
 
 # Docker (choose one)
 docker        # Docker Desktop
