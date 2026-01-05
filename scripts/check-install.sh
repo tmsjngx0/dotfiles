@@ -80,7 +80,7 @@ check "zellij" "zellij" "--version"
 check "delta" "delta" "--version"
 
 echo -e "\n${BLUE}━━━ Node.js ━━━${NC}"
-check "fnm" "fnm"
+check_path "fnm" "$HOME/.local/share/fnm/fnm"
 check "node" "node"
 check "npm" "npm"
 check "bun" "bun"
