@@ -28,9 +28,8 @@ if [ -d "$HOME/.dotnet" ]; then
 fi
 
 # fnm (Node.js)
-if [ -d "$HOME/.local/share/fnm" ]; then
-    export PATH="$HOME/.local/share/fnm:$PATH"
-    eval "$(fnm env)"
+if command -v fnm &> /dev/null; then
+    eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
 fi
 
 # Bun
@@ -87,6 +86,14 @@ alias gl="git log --oneline"
 # Local config (machine-specific, not in git)
 # ============================================
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+# ============================================
+# Shell enhancements
+# ============================================
+# Zoxide - smarter cd command
+if command -v zoxide &> /dev/null; then
+    eval "$(zoxide init zsh)"
+fi
 
 # ============================================
 # Prompt (load last)

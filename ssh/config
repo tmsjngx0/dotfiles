@@ -2,10 +2,27 @@
 Host github.com
     HostName github.com
     User git
+    IdentityFile ~/.ssh/id_ed25519
+    IdentityFile ~/.ssh/id_rsa
     IdentityFile ~/.ssh/id_github
+    IdentitiesOnly yes
 
-# Azure DevOps
+# Azure DevOps (new host)
 Host ssh.dev.azure.com
     HostName ssh.dev.azure.com
     User git
+    IdentityFile ~/.ssh/id_ed25519
+    IdentityFile ~/.ssh/id_rsa
     IdentityFile ~/.ssh/id_azure
+    IdentityFile ~/.ssh/id_rsa_azure
+    IdentitiesOnly yes
+
+# Azure DevOps (legacy host)
+Host vs-ssh.visualstudio.com
+    HostName vs-ssh.visualstudio.com
+    User git
+    IdentityFile ~/.ssh/id_ed25519
+    IdentityFile ~/.ssh/id_rsa
+    IdentityFile ~/.ssh/id_azure
+    IdentityFile ~/.ssh/id_rsa_azure
+    IdentitiesOnly yes
