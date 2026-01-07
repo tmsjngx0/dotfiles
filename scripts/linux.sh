@@ -347,7 +347,17 @@ if status "glow" "glow"; then :; else
     fi
 fi
 
-# 21. delta (git diff viewer)
+# 21. Tailscale
+section "Tailscale"
+if status "Tailscale" "tailscale"; then :; else
+    if ask "Install Tailscale?"; then
+        curl -fsSL https://tailscale.com/install.sh | sh
+        echo -e "${GREEN}Done${NC}"
+        echo -e "${YELLOW}Run 'sudo tailscale up' to authenticate${NC}"
+    fi
+fi
+
+# 22. delta (git diff viewer)
 section "delta (git diff viewer)"
 if status "delta" "delta"; then :; else
     if ask "Install delta?"; then
