@@ -80,26 +80,12 @@ link_file "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
 link_file "$DOTFILES_DIR/yazi" "$HOME/.config/yazi"
 link_file "$DOTFILES_DIR/claude/statusline-command.sh" "$HOME/.claude/statusline-command.sh"
 
-# WSL-specific setup (requires sudo, can't symlink to /etc)
+# WSL-specific setup info (wsl.conf is environment-specific, not auto-copied)
 if [ "$OS" = "wsl" ]; then
     echo -e "\n${BLUE}━━━ WSL Configuration ━━━${NC}"
-    if [ -f "$DOTFILES_DIR/wsl/wsl.conf" ]; then
-        if ! diff -q "$DOTFILES_DIR/wsl/wsl.conf" /etc/wsl.conf >/dev/null 2>&1; then
-            if $AUTO_YES; then
-                response="y"
-            else
-                echo -e "${YELLOW}Update /etc/wsl.conf?${NC}"
-                read -p "[y/N]: " response
-            fi
-            if [[ "$response" =~ ^[Yy]$ ]]; then
-                sudo cp "$DOTFILES_DIR/wsl/wsl.conf" /etc/wsl.conf
-                echo -e "${GREEN}[COPIED]${NC} /etc/wsl.conf"
-                echo -e "${YELLOW}Run 'wsl --shutdown' in PowerShell to apply changes${NC}"
-            fi
-        else
-            echo -e "${GREEN}[OK]${NC} /etc/wsl.conf is up to date"
-        fi
-    fi
+    echo -e "${YELLOW}[INFO]${NC} wsl.conf is environment-specific (hostname, username)"
+    echo -e "       Reference template: ${DOTFILES_DIR}/wsl/wsl.conf"
+    echo -e "       To setup: sudo nano /etc/wsl.conf"
 fi
 
 # Run platform-specific installer
